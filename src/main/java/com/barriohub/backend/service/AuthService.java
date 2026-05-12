@@ -12,6 +12,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -34,6 +37,10 @@ public class AuthService {
     }
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+
+
+
+
     public LoginResponse login(LoginRequest request) {
 
         authenticationManager.authenticate(
@@ -43,7 +50,8 @@ public class AuthService {
                 )
         );
 
-        String token = jwtService.generateToken(request.getEmail());
+        String token =
+                jwtService.generateToken(request.getEmail());
 
         return new LoginResponse(token);
     }
