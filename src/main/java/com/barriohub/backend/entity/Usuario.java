@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -36,4 +38,12 @@ public class Usuario {
     private Boolean activo = true;
 
     private LocalDateTime fechaCreacion = LocalDateTime.now();
+
+
+    @OneToMany(
+            mappedBy = "usuario",
+            fetch = FetchType.LAZY
+    )
+    @Builder.Default
+    private List<MiembroBarrio> miembros = new ArrayList<>();
 }
